@@ -3,6 +3,7 @@ import 'demo/counter_widget.dart';
 import './demo//stateManagement/tap_box_a.dart';
 import './demo//stateManagement/parent_box.dart';
 import './demo/formDemo.dart';
+import './demo/layoutDemo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // return const MyHomePage(title: 'Flutter练习');
     // return const MaterialApp(home: CounterWidget(initCounter: 100));
-    return const MaterialApp(home: FormDemo());
+    return MaterialApp(home: LayoutDemo());
+    // return const MaterialApp(home: FormDemo());
     // return const MaterialApp(home: TapBoxA());
     // return const MaterialApp(home: ParentBox());
   }
