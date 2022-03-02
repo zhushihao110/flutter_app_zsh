@@ -41,6 +41,39 @@ class LayoutDemo extends StatelessWidget {
               Text("测试线性布局1"),
               Text("测试线性布局2"),
             ],
+          ),
+          Container(
+            color: Colors.green,
+            width: 500.0,
+            height: 500.0,
+            child: Stack(
+              children: [
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: FlutterLogo(
+                    size: 80.0,
+                  ),
+                ),
+                Positioned(
+                  child: Container(
+                    color: Colors.yellow,
+                    height: 50.0,
+                    width: 50.0,
+                  ),
+                  left: 50.0,
+                  top: 50.0,
+                ),
+                Positioned(
+                  child: Container(
+                    color: Colors.pink,
+                    height: 60.0,
+                    width: 60.0,
+                  ),
+                  left: 50.0,
+                  top: 70.0,
+                ),
+              ],
+            ),
           )
         ],
       ),
