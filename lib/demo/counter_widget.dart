@@ -87,7 +87,22 @@ class _CounterWidgetState extends State<CounterWidget> {
               Checkbox(
                   value: _checkboxValue,
                   onChanged: checkboxOnChanged,
-                  activeColor: Colors.green)
+                  activeColor: Colors.green),
+              const LinearProgressIndicator(
+                backgroundColor: Colors.grey,
+                valueColor: AlwaysStoppedAnimation(Colors.red),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: CircularProgressIndicator(
+                    backgroundColor: Colors.grey[200],
+                    valueColor: const AlwaysStoppedAnimation(Colors.green),
+                  ),
+                ),
+              )
             ],
           ),
         ),
