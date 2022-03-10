@@ -1,6 +1,7 @@
-// ignore_for_file: file_names, deprecated_member_use
+// ignore_for_file: file_names, deprecated_member_use, must_call_super, avoid_print
 
 import 'package:flutter/material.dart';
+import './InfiniteListView.dart';
 
 class ScaffoldRoute extends StatefulWidget {
   const ScaffoldRoute({Key? key}) : super(key: key);
@@ -11,14 +12,37 @@ class ScaffoldRoute extends StatefulWidget {
 
 class _ScaffoldRoureState extends State<ScaffoldRoute> {
   int _selectedIndex = 1;
+  String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  // 列表控制
+  ScrollController listView = ScrollController();
+  bool showToTopBtn = false; //是否显示“返回到顶部”按钮
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  void _onAdd() {
-    print(_selectedIndex);
+  void _onTop() {
+    // print(_selectedIndex);
+    listView.animateTo(.0,
+        duration: const Duration(milliseconds: 200), curve: Curves.ease);
+  }
+
+  @override
+  void initState() {
+    listView.addListener(() {
+      if (listView.offset > 300) {
+        setState(() {
+          showToTopBtn = true;
+        });
+      } else {
+        setState(() {
+          showToTopBtn = false;
+        });
+      }
+    });
   }
 
   @override
@@ -51,15 +75,31 @@ class _ScaffoldRoureState extends State<ScaffoldRoute> {
         fixedColor: Colors.red,
         onTap: _onItemTapped,
       ),
-      floatingActionButton: FloatingActionButton(
-          //悬浮按钮
-          child: const Icon(Icons.add),
-          onPressed: _onAdd),
-      body: const Center(
-        child: Text(
-          '测试',
-          style: TextStyle(fontSize: 30.0),
-        ),
+      floatingActionButton: showToTopBtn
+          ? FloatingActionButton(
+              //悬浮按钮
+              child: const Icon(Icons.arrow_upward),
+              onPressed: _onTop)
+          : null,
+      body: Center(
+        child: InfiniteListView(listView: listView),
+        // child: Scrollbar(
+        // 显示进度条
+        // child: SingleChildScrollView(
+        //   padding: const EdgeInsets.all(20),
+        //   child: Column(
+        //     children: str
+        //         .split("")
+        //         .map(
+        //           (e) => Text(
+        //             e,
+        //             textScaleFactor: 2.0,
+        //           ),
+        //         )
+        //         .toList(),
+        //   ),
+        // ),
+        // ),
       ),
     );
   }
