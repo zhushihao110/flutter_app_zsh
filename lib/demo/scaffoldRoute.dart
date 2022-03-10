@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import './InfiniteListView.dart';
+import './functionDemo.dart';
 
 class ScaffoldRoute extends StatefulWidget {
   const ScaffoldRoute({Key? key}) : super(key: key);
@@ -82,24 +83,8 @@ class _ScaffoldRoureState extends State<ScaffoldRoute> {
               onPressed: _onTop)
           : null,
       body: Center(
-        child: InfiniteListView(listView: listView),
-        // child: Scrollbar(
-        // 显示进度条
-        // child: SingleChildScrollView(
-        //   padding: const EdgeInsets.all(20),
-        //   child: Column(
-        //     children: str
-        //         .split("")
-        //         .map(
-        //           (e) => Text(
-        //             e,
-        //             textScaleFactor: 2.0,
-        //           ),
-        //         )
-        //         .toList(),
-        //   ),
-        // ),
-        // ),
+        child: FunctionDemo(),
+        // child: InfiniteListView(listView: listView),
       ),
     );
   }
